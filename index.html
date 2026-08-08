@@ -174,11 +174,11 @@
         start.preventDefault();
         const rid=handle.dataset.dragResource,card=handle.closest('.resource-item'),origin={x:start.clientX,y:start.clientY};
         let dragging=false,active=null,targetItem=null;
-        const clear=()=>{document.body.classList.remove('organizer-resource-dragging');card?.classList.remove('is-dragging');active?.classList.remove('active');active=null};
+        const clear=()=>{document.body.classList.remove('organizer-resource-dragging');active?.classList.remove('active');active=null};
         const activate=zone=>{if(!zone||zone===active)return;active?.classList.remove('active');active=zone;active.classList.add('active')};
         const move=event=>{
           if(!dragging&&Math.hypot(event.clientX-origin.x,event.clientY-origin.y)<5)return;
-          if(!dragging){dragging=true;document.body.classList.add('organizer-resource-dragging');card?.classList.add('is-dragging')}
+          if(!dragging){dragging=true;document.body.classList.add('organizer-resource-dragging')}
           event.preventDefault();
           if(event.clientY<70)scrollBy(0,-14);else if(event.clientY>innerHeight-70)scrollBy(0,14);
           const under=document.elementFromPoint(event.clientX,event.clientY),zone=under?.closest('.insertion-zone[data-insert-kind="resource"]'),item=under?.closest('.resource-item');
